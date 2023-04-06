@@ -1,0 +1,23 @@
+server:
+  port: 9094
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/bookstore
+    username: postgres
+    password: qwerty
+  jpa:
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+        ddl:
+          auto: create
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+    show-sql: true
+  liquibase:
+    change-log: classpath:liquibase/changelog-master.yml
+  application:
+    secret-key: 8HaagcbM7qhUgaxA
+    default-access-token-validity: 43200000

@@ -1,0 +1,45 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create publisher table
+      author: Kamran
+      changes:
+        - createTable:
+            tableName: publishers
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: surname
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: password
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: book_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_publisher_book_to_book
+                    references: books(id)
+                    nullable: false
+
+
+            remarks: Table to store information about publishers

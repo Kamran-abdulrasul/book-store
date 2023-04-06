@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create book table
+      author: Kamran
+      changes:
+        - createTable:
+            tableName: books
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: author
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: genre
+                  type: text
+              - column:
+                  name: language
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: publisher
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: publisher-date
+                  type: datetime
+                  constraints:
+                    nullable: false
+
+
+
+            remarks: Table to store information about books
