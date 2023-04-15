@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class AppException extends RuntimeException {
-    private final int code;
+    private final String code;
     private final String message;
 
     public AppException(AppMessage portalError) {

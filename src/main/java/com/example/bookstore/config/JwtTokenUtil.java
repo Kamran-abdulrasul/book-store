@@ -4,8 +4,8 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
-//import org.springframework.security.core.authority.SimpleGrantedAuthority;
-//import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
@@ -47,27 +47,27 @@ public class JwtTokenUtil implements Serializable {
         return expiration.before(new Date());
     }
 
-//    public String generateToken(String username) {
-//        return doGenerateToken(username);
-//    }
-//
-//    private String doGenerateToken(String subject) {
-//
-//        Claims claims = Jwts.claims().setSubject(subject);
-//        claims.put("scopes", Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER")));
-//        return Jwts.builder()
-//                .setClaims(claims)
-//                .setIssuer("USER")
-//                .setIssuedAt(new Date(System.currentTimeMillis()))
-//                .setExpiration(new Date(System.currentTimeMillis() + defaultAccessTokenValidity))
-//                .signWith(SignatureAlgorithm.HS512, secretKey)
-//                .compact();
-//    }
+    public String generateToken(String username) {
+        return doGenerateToken(username);
+    }
 
-//    public Boolean validateToken(String token, UserDetails userDetails) {
-//        final String username = getEmailFromToken(token);
-//        return (
-//                username.equals(userDetails.getUsername())
-//                        && !isTokenExpired(token));
-//    }
+    private String doGenerateToken(String subject) {
+
+        Claims claims = Jwts.claims().setSubject(subject);
+        claims.put("scopes", Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER")));
+        return Jwts.builder()
+                .setClaims(claims)
+                .setIssuer("USER")
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + defaultAccessTokenValidity))
+                .signWith(SignatureAlgorithm.HS512, secretKey)
+                .compact();
+    }
+
+   public Boolean validateToken(String token, UserDetails userDetails) {
+        final String username = getEmailFromToken(token);
+        return (
+                username.equals(userDetails.getUsername())
+                        && !isTokenExpired(token));
+   }
 }

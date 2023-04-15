@@ -4,10 +4,11 @@ import com.example.bookstore.enums.AuthorityName;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "publisher")
+@Table(name = "users")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -33,11 +34,17 @@ public class UserEntity {
     @OneToMany(
             mappedBy = "user",
             cascade = CascadeType.ALL,
-            fetch =FetchType.EAGER
-    )
+            fetch = FetchType.EAGER)
     private List<BookEntity> books;
 
 
 
-
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "user_books",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id")
+    )
+    @ToString.Exclude
+    private List<BookEntity> user_books;
 }

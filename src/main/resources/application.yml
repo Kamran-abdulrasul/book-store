@@ -21,3 +21,9 @@ spring:
   application:
     secret-key: 8HaagcbM7qhUgaxA
     default-access-token-validity: 43200000
+    token-header: Authorization
+    token-header-prefix: Bearer
+
+user:
+  default:
+    password: password123

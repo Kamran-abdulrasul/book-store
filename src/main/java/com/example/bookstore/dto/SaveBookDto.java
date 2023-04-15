@@ -9,6 +9,7 @@ public class SaveBookDto {
     private String author;
     private String genre;
     private String language;
+    private Long userId;
 
 
 

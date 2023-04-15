@@ -15,6 +15,7 @@ public class BookResponse {
     private String name;
     private String author;
     private String genre;
-    private UserEntity user;
+    private String publisher_name;
+    private String publisher_surname;
     private LocalDate publisherDate;
 }

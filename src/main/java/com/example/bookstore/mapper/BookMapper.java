@@ -12,11 +12,12 @@ public class BookMapper {
 
     public static BookEntity saveDtoToEntity(UserEntity user, SaveBookDto dto) {
         return BookEntity.builder()
-                .name(dto.getName())
-                .author(dto.getAuthor())
-                .genre(dto.getGenre())
-                .language(dto.getLanguage())
+                .name(dto.getName().toUpperCase())
+                .author(dto.getAuthor().toUpperCase())
+                .genre(dto.getGenre().toUpperCase())
+                .language(dto.getLanguage().toUpperCase())
                 .publisherDate(LocalDate.now())
+                .user(user)
                 .build();
     }
 
@@ -25,7 +26,8 @@ public class BookMapper {
                 .name(entity.getName())
                 .author(entity.getAuthor())
                 .genre(entity.getGenre())
-                .user(entity.getUser())
+                .publisher_name(entity.getUser().getName())
+                .publisher_surname(entity.getUser().getSurname())
                 .publisherDate(entity.getPublisherDate())
         .build();
     }

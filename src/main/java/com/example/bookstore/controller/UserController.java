@@ -1,10 +1,13 @@
 package com.example.bookstore.controller;
 
+import com.example.bookstore.dto.ResponseDto;
 import com.example.bookstore.dto.UserDto;
+import com.example.bookstore.enums.AppMessage;
 import com.example.bookstore.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping("v1/user")
@@ -15,8 +18,10 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    void savePublisher(@RequestBody UserDto dto) {
-        userService.savePublisher(dto);
+    public ResponseDto saveUser(@RequestBody UserDto dto) {
+        userService.saveUser(dto);
+
+        return new ResponseDto(AppMessage.USER_CREATED.getCode(), AppMessage.USER_CREATED.getMessage());
 
     }
 
@@ -24,6 +29,6 @@ public class UserController {
     @RequestMapping("/{id}")
     public UserDto getUserById(@PathVariable Long id) {
 
-      return   userService.getUserById(id);
+        return userService.getUserById(id);
     }
 }

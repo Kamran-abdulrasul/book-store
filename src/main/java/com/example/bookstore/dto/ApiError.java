@@ -10,4 +10,6 @@ import lombok.NoArgsConstructor;
 public class ApiError {
     private String code;
     private String message;
+
+
 }
