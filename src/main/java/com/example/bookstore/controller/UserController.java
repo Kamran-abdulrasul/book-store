@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 
 @RestController
 @RequestMapping("v1/user")
@@ -16,9 +18,9 @@ public class UserController {
 
     private final UserService userService;
 
-    @PostMapping
+    @PostMapping("/sign-up")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseDto saveUser(@RequestBody UserDto dto) {
+    public ResponseDto saveUser(@Valid @RequestBody UserDto dto) {
         userService.saveUser(dto);
 
         return new ResponseDto(AppMessage.USER_CREATED.getCode(), AppMessage.USER_CREATED.getMessage());

@@ -46,14 +46,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/authenticate/sign-in").permitAll()
-//                .antMatchers("/api/organization-profile/sign-up").permitAll()
-//                .antMatchers("/api/user/**", "/task/saveTask").hasAnyAuthority("ROLE_ADMIN")
-//                .antMatchers("/api/task/organization-profile/tasks").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
-//                .antMatchers("/api/task/organization-profile/tasks").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
+                .antMatchers("/api/authentication/sign-in").permitAll()
+                .antMatchers("/v1/user/sign-up").permitAll()
+                .antMatchers("/v1/user").permitAll()
                 .anyRequest().authenticated()
-                .and()
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                .and().addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
 

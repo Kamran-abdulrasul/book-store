@@ -4,18 +4,18 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/bookstore
+    url: jdbc:postgresql://localhost:5432/bookstore?useSSL=false
     username: postgres
-    password: qwerty
+    password: Sefter111
   jpa:
     properties:
       hibernate:
         temp:
           use_jdbc_metadata_defaults: false
-        ddl:
-          auto: create
     database-platform: org.hibernate.dialect.PostgreSQL10Dialect
     show-sql: true
+    hibernate:
+      ddl-auto: update
   liquibase:
     change-log: classpath:liquibase/changelog-master.yml
   application:
